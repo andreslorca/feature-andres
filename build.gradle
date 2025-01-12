@@ -1,0 +1,21 @@
+// Aplica el plugin de Java al proyecto
+plugins {
+    id 'java'  // Utiliza el plugin de Java
+}
+
+// Repositorios donde Gradle buscará las dependencias
+repositories {
+    mavenCentral()  // Repositorio principal de Maven
+}
+
+// Define las dependencias del proyecto
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6' // Dependencia de Spring Boot
+    testImplementation 'junit:junit:4.13.2'  // Dependencia para las pruebas
+}
+
+// Propiedades del proyecto
+group = 'com.ejemplo'  // El grupo del proyecto
+version = '1.0.0'  // La versión del proyecto
+sourceCompatibility = '1.8'  // Compatibilidad con la versión de Java (si estás usando Java)
+targetCompatibility = '1.8'
