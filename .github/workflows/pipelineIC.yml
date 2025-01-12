@@ -4,11 +4,16 @@ on:
     - main
 
 jobs:
-  script:
+  SAST:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Hola Mundo
-        run: |
-          echo 'hola mundo'
-      
+    - name: set up JDK 17
+      users: action/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+
+      name: Checkout code
+      users: action/chekout@v2
+    
