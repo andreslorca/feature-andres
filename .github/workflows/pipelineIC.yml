@@ -7,7 +7,7 @@ on:
 
 jobs:
   SAST:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       # Paso 1: Configurar JDK 17
@@ -35,14 +35,11 @@ jobs:
 
       # Paso 6: Análisis SCA con OWASP Dependency-Check
       - name: Dependency-Check Scan
-        uses: dependency-check/scan-action@v3
+        uses: owasp/dependency-check-action@v4
         with:
-          # Ruta al proyecto
-          project: 'NombreDeTuProyecto'
-          # Ruta de salida para los reportes
           outputDirectory: './dependency-check-report'
-          # Formatos de reporte (HTML y JSON en este caso)
           format: 'ALL'
+
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v3
         with:
