@@ -1,0 +1,14 @@
+name: WorkFlow
+on:  
+  push:
+    - main
+
+jobs:
+  script:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Hola Mundo
+        run: |
+          echo 'hola mundo'
+      
