@@ -21,21 +21,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Paso 3: Configurar SonarCloud
-      - name: Set up SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v1
-        with:
-          token: ${{ secrets.SONAR_TOKEN }}
+      # Paso 3: Instalar SonarScanner de Gradle
+      - name: Install SonarScanner for Gradle
+        run: ./gradlew wrapper --gradle-version 7.4.2
 
-      # Paso 4: Construir el proyecto usando Gradle
-      - name: Build
-        run: |
-          chmod +x gradlew
-          ./gradlew build
+      # Paso 4: Configurar variables de entorno de SonarCloud
+      - name: Set environment variables
+        run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
-      # Paso 5: Ejecutar el análisis de SonarCloud.
+      # Paso 5: Construir y analizar el proyecto
       - name: SonarCloud Scan
-        run: ./gradlew sonarqube
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
+        run: ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
