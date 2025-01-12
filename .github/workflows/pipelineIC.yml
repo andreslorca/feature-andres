@@ -21,8 +21,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Paso 3: Construir el proyecto usando Gradle
+      # Paso 3: Configurar SonarCloud
+      - name: Set up SonarCloud
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          token: ${{ secrets.SONAR_TOKEN }}
+
+      # Paso 4: Construir el proyecto usando Gradle
       - name: Build
         run: |
           chmod +x gradlew
           ./gradlew build
+
+      # Paso 5: Ejecutar el análisis de SonarCloud
+      - name: SonarCloud Scan
+        run: ./gradlew sonarqube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
