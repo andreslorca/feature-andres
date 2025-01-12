@@ -1,6 +1,7 @@
 // Aplica el plugin de Java al proyecto
 plugins {
     id 'java'  // Utiliza el plugin de Java
+    id "org.sonarqube" version "3.5.0.2730" // Usa la última versión del plugin 
 }
 
 // Repositorios donde Gradle buscará las dependencias
@@ -19,3 +20,12 @@ group = 'com.ejemplo'  // El grupo del proyecto
 version = '1.0.0'  // La versión del proyecto
 sourceCompatibility = '1.8'  // Compatibilidad con la versión de Java (si estás usando Java)
 targetCompatibility = '1.8'
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "andreslorca"
+        property "sonar.organization", "andreslorca"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.login", System.getenv("SONAR_TOKEN") // Usar token desde variables de entorno
+    }
+}
