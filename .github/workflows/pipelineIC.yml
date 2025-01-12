@@ -1,7 +1,7 @@
 name: WorkFlow
 on:  
   push:
-    - main
+    - feature-andres
 
 jobs:
   SAST:
