@@ -16,7 +16,7 @@ dependencies {
 }
 
 // Propiedades del proyecto
-group = 'com.ejemplo'  // El grupo del proyecto
+group = 'com.ejemplo'  // El grupo del proyecto.
 version = '1.0.0'  // La versión del proyecto
 sourceCompatibility = '1.8'  // Compatibilidad con la versión de Java (si estás usando Java)
 targetCompatibility = '1.8'
