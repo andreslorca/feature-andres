@@ -33,7 +33,7 @@ jobs:
           chmod +x gradlew
           ./gradlew build
 
-      # Paso 5: Ejecutar el análisis de SonarCloud
+      # Paso 5: Ejecutar el análisis de SonarCloud.
       - name: SonarCloud Scan
         run: ./gradlew sonarqube
         env:
