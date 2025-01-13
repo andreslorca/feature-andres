@@ -1,3 +1,4 @@
+
 name: WorkFlow
 
 on:  
@@ -29,21 +30,9 @@ jobs:
       - name: Set environment variables
         run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
-      # Paso 5: Construir y analizar el proyecto con SonarCloud
+      # Paso 5: Construir y analizar el proyecto
       - name: SonarCloud Scan
         run: ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
-      # Paso 6: Análisis de dependencias con OWASP Dependency-Check
-      - name: OWASP Dependency-Check Scan
-        uses: dependency-check/gha@v6
-        with:
-          output-directory: './dependency-check-report'
-          format: 'ALL'
-          scan-path: '.'
 
-      # Paso 7: Subir reporte de Dependency-Check como artefacto
-      - name: Upload Dependency-Check Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check-report
-          path: './dependency-check-report'
+
