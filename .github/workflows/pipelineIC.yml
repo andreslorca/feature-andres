@@ -7,7 +7,7 @@ on:
 
 jobs:
   SAST:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     steps:
       # Paso 1: Configurar JDK 17
@@ -35,7 +35,7 @@ jobs:
 
       # Paso 6: Configurar Snyk CLI
       - name: Set up Snyk
-        uses: snyk/actions/setup@v1
+        uses: snyk/actions/setup@v2
         with:
           version: 'latest'
 
@@ -50,3 +50,4 @@ jobs:
       # Paso 9: Generar reporte de vulnerabilidades
       - name: Snyk Report
         run: snyk monitor --all-projects
+
