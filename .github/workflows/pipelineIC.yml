@@ -35,10 +35,11 @@ jobs:
 
       # Paso 6: Análisis SCA con OWASP Dependency-Check
       - name: Dependency-Check Scan
-        uses: owasp/dependency-check-action@v4
+        uses: dependency-check/gha@v6
         with:
-          outputDirectory: './dependency-check-report'
+          output-directory: './dependency-check-report'
           format: 'ALL'
+          scan-path: '.'
 
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v3
