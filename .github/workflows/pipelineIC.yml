@@ -7,7 +7,7 @@ on:
 
 jobs:
   SAST:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       # Paso 1: Configurar JDK 17
@@ -35,7 +35,7 @@ jobs:
 
       # Paso 6: Configurar Snyk CLI
       - name: Set up Snyk
-        uses: snyk/actions/setup@v1.10.3
+        uses: snyk/actions/setup@v1
         with:
           version: 'latest'
 
