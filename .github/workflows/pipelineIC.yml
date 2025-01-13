@@ -47,3 +47,12 @@ jobs:
         with:
           name: dependency-check-report
           path: './dependency-check-report'
+
+      # Paso 8: OWASP Dependency Track Check
+      - name: OWASP Dependency Track check
+        uses: Quobis/action-owasp-dependecy-track-check@v1.3.1
+        with:
+          server-url: ${{ secrets.DEPENDENCY_TRACK_SERVER_URL }}
+          api-key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}
+          project-name: "NombreDelProyecto"
+
