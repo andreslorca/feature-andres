@@ -7,7 +7,7 @@ on:
 
 jobs:
   SAST:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     steps:
       # Paso 1: Configurar JDK 17
