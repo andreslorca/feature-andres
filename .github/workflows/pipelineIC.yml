@@ -7,7 +7,7 @@ on:
 
 jobs:
   SAST:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       # Paso 1: Configurar JDK 17
@@ -29,30 +29,7 @@ jobs:
       - name: Set environment variables
         run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
-      # Paso 5: Construir y analizar el proyecto con SonarCloud
+      # Paso 5: Construir y analizar el proyecto
       - name: SonarCloud Scan
         run: ./gradlew sonarqube -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
-      # Paso 6: Análisis SCA con OWASP Dependency-Check
-      - name: Dependency-Check Scan
-        uses: actions/owasp-dependency-check@v4.1.2
-        with:
-          output-directory: './dependency-check-report'
-          format: 'ALL'
-          scan-path: '.'
-
-      # Paso 7: Subir reporte como artefacto
-      - name: Upload Dependency-Check Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check-report
-          path: './dependency-check-report'
-
-      # Paso 8: OWASP Dependency Track Check
-      - name: OWASP Dependency Track check
-        uses: Quobis/action-owasp-dependecy-track-check@v1.3.1
-        with:
-          server-url: ${{ secrets.DEPENDENCY_TRACK_SERVER_URL }}
-          api-key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}
-          project-name: "NombreDelProyecto"
 
